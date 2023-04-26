@@ -8,11 +8,11 @@ To get started with unittest, you first need to import the module:
 
 ```python
 import unittest
-
+```
 
 Once you have imported the module, you can start writing unit tests. A unit test is a class that inherits from unittest.TestCase. Each method in the class is a unit test. For example:
 
-python
+```python
 class TestStringMethods(unittest.TestCase):
 
   def test_upper(self):
@@ -28,16 +28,16 @@ class TestStringMethods(unittest.TestCase):
     # check that s.split fails when the separator is not a string
     with self.assertRaises(TypeError):
       s.split(2)
-
+```
 
 The unittest module provides a number of assert methods that you can use to check the results of your unit tests. For example, the assertEqual() method checks that two values are equal. The assertTrue() method checks that a value is True. The assertFalse() method checks that a value is False. The assertRaises() method checks that a method raises an exception.
 
 Once you have written your unit tests, you can run them using the unittest.main() function:
 
-python
+```python
 if __name__ == '__main__':
   unittest.main()
-
+```
 
 The unittest.main() function will run all of the unit tests in the current module. If any of the unit tests fail, the unittest.main() function will print an error message.
 
@@ -56,9 +56,9 @@ There are a number of ways to run unit tests. You can run them from the command 
 
 To run unit tests from the command line, you can use the unittest.main() function:
 
-python
+```python
 python -m unittest
-
+```
 
 To run unit tests from an IDE, you can use the IDE's built-in unit testing features.
 
