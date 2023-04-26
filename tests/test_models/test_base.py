@@ -4,7 +4,7 @@
 
 import unittest
 from models.base import Base
-
+from models.rectangle import Rectangle
 
 class Test_Base(unittest.TestCase):
     """a suite to test base class"""
@@ -14,6 +14,7 @@ class Test_Base(unittest.TestCase):
         self.b1 = Base()
         self.b2 = Base()
         self.b3 = Base(5)
+        self.r1 = Rectangle(10, 7, 2, 8)
     def tearDown(self):
         del self.b1
         del self.b2
@@ -27,6 +28,12 @@ class Test_Base(unittest.TestCase):
     def test_type_instance(self):
         self.assertEqual(type(self.b1), Base)
         self.assertIsInstance(self.b2, Base)
+
+    def test_to_json_string(self):
+        dictionary = self.r1.to_dictionary()
+        json_dict = Base.to_json_string([dictionary])
+        self.assertEqual(type(dictionary), dict)
+        self.assertIsInstance(json_dict, str)
 
 if __name__ == "__main__":
     unittest.main()
