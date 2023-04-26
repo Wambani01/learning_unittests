@@ -24,5 +24,9 @@ class Test_Base(unittest.TestCase):
         self.assertEqual(self.b2.id, 2)
         self.assertEqual(self.b3.id, 5)
 
+    def test_type_instance(self):
+        self.assertEqual(type(self.b1), Base)
+        self.assertIsInstance(self.b2, Base)
+
 if __name__ == "__main__":
     unittest.main()
