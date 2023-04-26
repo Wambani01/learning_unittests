@@ -5,6 +5,7 @@
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
+import os
 
 class Test_Base(unittest.TestCase):
     """a suite to test base class"""
@@ -19,6 +20,11 @@ class Test_Base(unittest.TestCase):
         del self.b1
         del self.b2
         del self.b3
+        try:
+            os.remove(f"{self.r1.__class__.__name__}.json")
+        except FileNotFoundError:
+            pass
+        del self.r1
 
     def test_base(self):
         self.assertEqual(self.b1.id, 1)
@@ -34,6 +40,17 @@ class Test_Base(unittest.TestCase):
         json_dict = Base.to_json_string([dictionary])
         self.assertEqual(type(dictionary), dict)
         self.assertIsInstance(json_dict, str)
+    
+    def test_save_to_file(self):
+        dictionary = self.r1.to_dictionary()
+        dictionary = Base.to_json_string([dictionary])
+        Rectangle.save_to_file([self.r1])
+        filename = f'{self.r1.__class__.__name__}.json'
+        with open(filename, 'r') as f:
+            data = f.read()
+        self.assertEqual(data, dictionary)
+
+
 
 if __name__ == "__main__":
     unittest.main()
